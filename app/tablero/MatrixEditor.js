@@ -127,8 +127,8 @@ export default function MatrixEditor() {
       </div>
 
       <div className={s.matrix}>
-        {rows.map((r) => (
-          <div key={r.id} className={`${s.ecard} ${r.dday ? s.dday : ""} ${filter && r.ph !== filter ? s.dim : ""}`}>
+        {rows.filter((r) => !filter || r.ph === filter).map((r) => (
+          <div key={r.id} className={`${s.ecard} ${r.dday ? s.dday : ""}`}>
             <button className={s.del} onClick={() => del(r.id)} title="Eliminar día" aria-label="Eliminar día">✕</button>
             <div className={s.eLeft}>
               <Editable className={s.cd} value={r.cd} onSave={(v) => edit(r.id, "cd", v)} />
