@@ -12,7 +12,7 @@ const FUNCIONA = [
   ["Autos con gancho", "El mismo auto, pero con un titular que pica («este SUV salió a menos de X»), rinde mucho más que la ficha fría."],
 ];
 const FRENA = [
-  ["Comentarios apagados", "Es autosabotaje: le quitas al algoritmo la señal que más usa para repartir, y al visitante nuevo la prueba social que necesita para confiar."],
+  ["Leads de compra sin responder", "Los comentarios están abiertos y llegan preguntas de compra («¿con quién me comunico?») que quedan sin respuesta. El canal funciona; el dinero se queda sobre la mesa por no responder ni capturar el lead."],
   ["Publicar sin preguntar", "5,597 posts y 3-5 likes. El problema no es publicar de más, es publicar sin pedir una sola interacción."],
   ["5 links en la bio", "«y 4 más» reparte la intención en cinco destinos. Nadie hace clic en cinco cosas. Uno solo, medible."],
   ["Ficha de auto sin alma", "El carrusel catálogo de partner llena el feed y no mueve a nadie. El producto está; falta el gancho."],
@@ -29,7 +29,7 @@ const CADENCIA = [
   {
     q: "¿Publicamos todos los días?",
     a: ["Sí, y eso no se discute. Los autos a subasta salen a diario: son el inventario, el negocio, y cada auto es una venta posible. Cortarlos para «no saturar» sería dispararnos al pie.",
-        "Lo que cambia no es la frecuencia, es la señal. Hoy esos posts van con comentarios apagados y sin una sola pregunta. La regla de la semana: <b>los autos siguen a diario (comentarios ON + un gancho)</b>, y encima montamos el post héroe de campaña."],
+        "Lo que cambia no es la frecuencia, es la señal. Los comentarios ya están activos y por ahí entran leads con intención de compra — pero muchos posts salen sin una sola pregunta y hay preguntas de compra sin responder. La regla de la semana: <b>los autos siguen a diario (un gancho + responder cada comentario de compra)</b>, y encima montamos el post héroe de campaña."],
   },
   {
     q: "¿Qué día salen los videos? ¿1 o 2 Reels por semana?",
@@ -53,7 +53,7 @@ export default function Tablero() {
     <div className={s.root}>
       <div className={s.topbar}>
         <Link href="/tablero" className={s.navActive}>Plan</Link>
-        {/* Programar y Métricas ocultos por ahora (rutas /programar y /metricas existen) */}
+        {/* Programar oculto por ahora (ruta /programar existe). Métricas eliminado por ahora. */}
         <span className={s.muted}>Subastop · plan de contenido</span>
       </div>
 
@@ -64,7 +64,8 @@ export default function Tablero() {
             <h1>Plan de lanzamiento<br /><span className={s.grad}>rumbo al 15 de julio</span></h1>
             <p className={s.thesis}>
               Los <b>autos a subasta</b> se siguen publicando a diario, son el negocio. El problema no es cuánto
-              publicamos: es que esa frecuencia va con <b>comentarios apagados y sin gancho</b>, y no genera señal.
+              publicamos: es que esa frecuencia va <b>sin gancho y con leads de compra sin responder</b> en comentarios
+              (que sí están abiertos), y no genera señal ni captura la venta.
               El plan <b>mantiene el ritmo diario, lo activa</b>, y le suma la narrativa de lanzamiento hasta el 15/7.
             </p>
           </div>
