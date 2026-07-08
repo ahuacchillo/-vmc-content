@@ -53,7 +53,7 @@ export default function Tablero() {
     <div className={s.root}>
       <div className={s.topbar}>
         <Link href="/tablero" className={s.navActive}>Plan</Link>
-        <Link href="/metricas">Métricas</Link>
+        {/* Programar y Métricas ocultos por ahora (rutas /programar y /metricas existen) */}
         <span className={s.muted}>Subastop · plan de contenido</span>
       </div>
 
