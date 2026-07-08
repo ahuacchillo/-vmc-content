@@ -7,7 +7,7 @@ const PHASES = ["Despertar", "Hype", "Reveal", "Lanzamiento"];
 const PH_CLASS = { Despertar: "phDespertar", Hype: "phHype", Reveal: "phReveal", Lanzamiento: "phLanzamiento" };
 
 // Base: análisis de growth @vmcsubastas (D-7 → D-Day, 7/8→7/15). Ángulo confirmado:
-// sigue siendo VMC, evolución con el ADN de Subascars — NO es cambio de nombre.
+// sigue siendo VMC, evolución con el ADN de Subascars, NO es cambio de nombre.
 // La base diaria de autos a subasta NO está aquí: sigue todos los días. Esto es la capa "héroe".
 const DEFAULT = [
   { id: "d7", cd: "D-7", date: "7/8", dow: "Mié", ph: "Despertar", obj: "Reabrir la conversación",
@@ -26,7 +26,7 @@ const DEFAULT = [
     stories: "Sticker de pregunta + repost de respuestas",
     justif: "Viernes: la gente está más receptiva a lo emocional. Contamos los 6 años para que el reveal se sienta como evolución, no como «cambiaron y ya no los reconozco»." },
   { id: "d4", cd: "D-4", date: "7/11", dow: "Sáb", ph: "Hype", obj: "Encender la intriga",
-    fmt: "Carrusel reveal parcial — silueta / logo borroso",
+    fmt: "Carrusel reveal parcial (silueta o logo borroso)",
     hook: "¿Adivinas qué se viene?", cta: "Tíranos tu teoría en comentarios",
     stories: "Countdown + repost de las mejores teorías",
     justif: "Fin de semana = más scroll. La silueta fuerza el «¿qué es?» en comentarios: puro combustible de interacción. Empezamos a mover tráfico a la lista de espera. Si algo se pauta, es este." },
@@ -37,14 +37,14 @@ const DEFAULT = [
     justif: "Movemos de intriga a beneficio: qué gana la gente. Abrimos la conversión suave a la waitlist, sin quemar el reveal todavía." },
   { id: "d2", cd: "D-2", date: "7/13", dow: "Lun", ph: "Reveal", obj: "Reveal total",
     fmt: "Reel + Carrusel oficial",
-    hook: "Sigue siendo VMC — subimos de nivel, con el ADN de Subascars", cta: "Sé de los primeros en acceder",
+    hook: "Sigue siendo VMC, subimos de nivel con el ADN de Subascars", cta: "Sé de los primeros en acceder",
     stories: "Countdown + sneak peek + link",
     justif: "El reveal va HOY, no el día del lanzamiento, a propósito: le damos 48 h para circular y generar comentarios antes de pedir el registro. Reel porque necesitamos alcance frío; carrusel porque la base necesita el «sigues en casa»." },
   { id: "d1", cd: "D-1", date: "7/14", dow: "Mar", ph: "Reveal", obj: "Urgencia",
     fmt: "Solo Stories: «Mañana cambia todo»",
     hook: "Urgencia pura", cta: "Activa tu recordatorio",
     stories: "Countdown cada pocas horas + AMA opcional",
-    justif: "Víspera. Todo el peso a recordatorios en Stories. No competimos con nosotros mismos con un feed fuerte hoy — el escenario es de mañana." },
+    justif: "Víspera. Todo el peso a recordatorios en Stories. No competimos con nosotros mismos con un feed fuerte hoy. El escenario es de mañana." },
   { id: "dday", cd: "D-DAY", date: "7/15", dow: "Mié", ph: "Lanzamiento", dday: true, obj: "Conversión",
     fmt: "Reel FIJADO + Carrusel + flood de Stories",
     hook: "El nuevo VMC ya está aquí 🚀", cta: "Regístrate y haz tu primera oferta (link único)",
@@ -99,7 +99,7 @@ export default function MatrixEditor() {
   const add = () =>
     persist([...rows, {
       id: "x" + rows.length + "-" + rows.reduce((a, r) => a + r.id.length, 0),
-      cd: "+", date: "7/?", dow: "—", ph: "Despertar", obj: "Nuevo objetivo",
+      cd: "+", date: "7/?", dow: "Día", ph: "Despertar", obj: "Nuevo objetivo",
       fmt: "Formato", hook: "Ángulo / hook", cta: "CTA", stories: "Stories", justif: "¿Por qué este día?",
     }]);
 
