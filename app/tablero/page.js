@@ -1,3 +1,4 @@
+import Link from "next/link";
 import s from "./page.module.css";
 import MatrixEditor from "./MatrixEditor";
 import CopyBlock from "./CopyBlock";
@@ -51,6 +52,8 @@ export default function Tablero() {
   return (
     <div className={s.root}>
       <div className={s.topbar}>
+        <Link href="/tablero" className={s.navActive}>Plan</Link>
+        <Link href="/metricas">Métricas</Link>
         <span className={s.muted}>Subastop · plan de contenido</span>
       </div>
 

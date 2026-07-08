@@ -49,7 +49,8 @@
   border: 1px solid var(--line); border-radius: 9999px; padding: 6px 14px; background: var(--panel);
 }
 .topbar a:hover { color: var(--orange-lt); border-color: var(--orange); }
-.topbar .muted { color: var(--ink-faint); }
+.topbar a.navActive { background: var(--grad); color: #fff; border-color: transparent; }
+.topbar .muted { color: var(--ink-faint); margin-left: auto; }
 
 .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 24px 80px; }
 
