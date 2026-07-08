@@ -4,9 +4,9 @@ import path from "node:path";
 // Guarda la imagen en public/uploads y devuelve su URL pública.
 // Instagram descarga la imagen DESDE esa URL, así que debe ser accesible por internet.
 // ponytail: disco local. Pasar a S3/CDN cuando haya más de una instancia o se llene el disco.
-export async function POST(req) {
+export async function POST(req: Request) {
   const form = await req.formData();
-  const file = form.get("file");
+  const file = form.get("file") as File | null;
   if (!file || typeof file === "string") {
     return Response.json({ error: "No se recibió archivo." }, { status: 400 });
   }

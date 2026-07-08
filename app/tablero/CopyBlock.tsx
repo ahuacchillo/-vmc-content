@@ -2,7 +2,7 @@
 import { useState } from "react";
 import s from "./page.module.css";
 
-export default function CopyBlock({ label, text }) {
+export default function CopyBlock({ label, text }: { label: string; text: string }) {
   const [ok, setOk] = useState(false);
   const copy = async () => {
     try {

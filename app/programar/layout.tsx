@@ -7,6 +7,8 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-export default function ProgramarLayout({ children }) {
+import type { ReactNode } from "react";
+
+export default function ProgramarLayout({ children }: { children: ReactNode }) {
   return <div className={jakarta.variable}>{children}</div>;
 }

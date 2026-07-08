@@ -1,11 +1,9 @@
 import Link from "next/link";
-import s from "./page.module.css";
-import MatrixEditor from "./MatrixEditor";
-import CopyBlock from "./CopyBlock";
+import s from "../page.module.css";
+import CopyBlock from "../CopyBlock";
 
-const cx = (...c) => c.filter(Boolean).join(" ");
+const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(" ");
 
-// Auditoría (base: análisis de @vmcsubastas, verificar en vivo antes de presentar)
 const FUNCIONA = [
   ["Reels con historia", "Cuando el reel cuenta algo (no solo muestra el auto), la gente se queda y comenta. Es lo único que te saca del círculo de seguidores dormidos."],
   ["Contenido que enseña", "Los tips y el «cómo funciona» se guardan, y el guardado pesa más que el like para que Instagram te reparta a gente nueva."],
@@ -46,33 +44,26 @@ const CADENCIA = [
   },
 ];
 
-export const metadata = { title: "Plan de lanzamiento · @vmcsubastas" };
+export const metadata = { title: "Audit VMC · @vmcsubastas" };
 
-export default function Tablero() {
+export default function Audit() {
   return (
     <div className={s.root}>
       <div className={s.topbar}>
-        <Link href="/tablero" className={s.navActive}>Plan</Link>
-        {/* Programar oculto por ahora (ruta /programar existe). Métricas eliminado por ahora. */}
+        <Link href="/tablero">Plan</Link>
+        <Link href="/tablero/audit" className={s.navActive}>Audit VMC</Link>
         <span className={s.muted}>Subastop · plan de contenido</span>
       </div>
 
       <div className={s.wrap}>
         <header className={s.hero}>
           <div>
-            <div className={s.brandChip}><span className={s.dot} /> Relanzamiento · <b>@vmcsubastas</b></div>
-            <h1>Plan de lanzamiento<br /><span className={s.grad}>rumbo al 15 de julio</span></h1>
+            <div className={s.brandChip}><span className={s.dot} /> Audit · <b>@vmcsubastas</b></div>
+            <h1>Audit VMC<br /><span className={s.grad}>el porqué detrás de la grilla</span></h1>
             <p className={s.thesis}>
-              Los <b>autos a subasta</b> se siguen publicando a diario, son el negocio. El problema no es cuánto
-              publicamos: es que esa frecuencia va <b>sin gancho y con leads de compra sin responder</b> en comentarios
-              (que sí están abiertos), y no genera señal ni captura la venta.
-              El plan <b>mantiene el ritmo diario, lo activa</b>, y le suma la narrativa de lanzamiento hasta el 15/7.
+              Qué suma y qué corregir ya, la <b>optimización de perfil</b> lista para copiar y pegar,
+              y la <b>lógica de cadencia</b> que justifica el orden del feed.
             </p>
-          </div>
-          <div className={s.launch}>
-            <div className={s.lab}>Lanzamiento</div>
-            <div className={s.day}>15</div>
-            <div className={s.mo}>Jul · Mié</div>
           </div>
         </header>
 
@@ -118,10 +109,7 @@ export default function Tablero() {
           ))}
         </div>
 
-        <h2 className={s.sec}><span className={s.n}>04</span> Matriz 7 días <span className={s.hint}>editable · filtra por fase · se guarda solo</span></h2>
-        <MatrixEditor />
-
-        <h2 className={s.sec}><span className={s.n}>05</span> Después del lanzamiento <span className={s.hint}>gestión continua, alineada con la agencia</span></h2>
+        <h2 className={s.sec}><span className={s.n}>04</span> Después del lanzamiento <span className={s.hint}>gestión continua, alineada con la agencia</span></h2>
         <div className={s.pillars}>
           {PILARES.map(([ic, t, d]) => (
             <div key={t} className={s.pillar}>
@@ -137,7 +125,7 @@ export default function Tablero() {
           <p><b>Alineación con la agencia:</b> nosotros llevamos orgánico y comunidad; la agencia lleva pauta y performance, sobre el mismo link con seguimiento. Sync semanal y reporte mensual (alcance, guardados, comentarios, clics a la lista, registros).</p>
         </div>
 
-        <footer className={s.footer}>Plan de lanzamiento · @vmcsubastas · presentación 08 jul · lanzamiento 15 jul 2026</footer>
+        <footer className={s.footer}>Audit VMC · @vmcsubastas · presentación 08 jul · lanzamiento 15 jul 2026</footer>
       </div>
     </div>
   );

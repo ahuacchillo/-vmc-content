@@ -5,10 +5,10 @@ export default function Publicar() {
   const [imageUrl, setImageUrl] = useState("");
   const [preview, setPreview] = useState("");
   const [caption, setCaption] = useState("");
-  const [status, setStatus] = useState(null); // {kind:'ok'|'err'|'info', msg}
+  const [status, setStatus] = useState<{ kind: "ok" | "err" | "info"; msg: string } | null>(null);
   const [busy, setBusy] = useState(false);
 
-  async function onFile(e) {
+  async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     setPreview(URL.createObjectURL(file));
@@ -23,7 +23,7 @@ export default function Publicar() {
       setImageUrl(d.url);
       setStatus({ kind: "info", msg: "Imagen lista. Escribe el caption y publica." });
     } catch (err) {
-      setStatus({ kind: "err", msg: err.message });
+      setStatus({ kind: "err", msg: (err as Error).message });
     } finally {
       setBusy(false);
     }
@@ -42,7 +42,7 @@ export default function Publicar() {
       if (!d.ok) throw new Error(d.error || "No se pudo publicar.");
       setStatus({ kind: "ok", msg: `Publicado ✓  (media ${d.id})` });
     } catch (err) {
-      setStatus({ kind: "err", msg: err.message });
+      setStatus({ kind: "err", msg: (err as Error).message });
     } finally {
       setBusy(false);
     }

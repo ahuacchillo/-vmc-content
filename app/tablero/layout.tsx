@@ -7,6 +7,8 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-export default function TableroLayout({ children }) {
+import type { ReactNode } from "react";
+
+export default function TableroLayout({ children }: { children: ReactNode }) {
   return <div className={jakarta.variable}>{children}</div>;
 }

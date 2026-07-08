@@ -1,6 +1,6 @@
 import { publishImage } from "../../../lib/instagram.mjs";
 
-export async function POST(req) {
+export async function POST(req: Request) {
   const { imageUrl, caption } = await req.json();
   try {
     const id = await publishImage({
@@ -11,6 +11,6 @@ export async function POST(req) {
     });
     return Response.json({ ok: true, id });
   } catch (e) {
-    return Response.json({ ok: false, error: e.message }, { status: 400 });
+    return Response.json({ ok: false, error: (e as Error).message }, { status: 400 });
   }
 }
