@@ -87,7 +87,6 @@ export default function Tablero() {
             </ul>
           </div>
         </div>
-        <p className={s.note}>* Basado en la auditoría previa de la cuenta. No pude leer el perfil en vivo desde aquí, conviene una mirada rápida antes de presentar, por si los números cambiaron.</p>
 
         <h2 className={s.sec}><span className={s.n}>02</span> Optimización de perfil <span className={s.hint}>listo para copiar y pegar</span></h2>
         <div className={s.optStack}>
