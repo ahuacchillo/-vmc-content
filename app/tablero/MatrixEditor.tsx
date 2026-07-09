@@ -18,7 +18,9 @@ type Row = {
 };
 
 // Base: análisis de growth @vmcsubastas (D-7 → D-Day, 7/8→7/15). Ángulo confirmado:
-// sigue siendo VMC, evolución con el ADN de Subascars, NO es cambio de nombre.
+// sigue siendo VMC (NO cambio de nombre), pero el REVEAL es la expansión de categoría:
+// "ya no solo autos — ahora subastas lo que quieras". Autos = ancla/base diaria y prueba
+// de credibilidad; la expansión es la noticia que le da peso al 15/7.
 // La base diaria de autos a subasta NO está aquí: sigue todos los días. Esto es la capa "héroe".
 const DEFAULT: Row[] = [
   { id: "d7", cd: "D-7", date: "7/8", dow: "Mié", ph: "Despertar", type: "Reel", obj: "Reactivar la conversación",
@@ -32,10 +34,10 @@ const DEFAULT: Row[] = [
     stories: "BTS del equipo + countdown",
     justif: "Damos valor antes de pedir nada. El carrusel útil se guarda, y el guardado es la señal más fuerte para que IG te muestre a gente nueva. De paso posiciona autoridad: sabemos de subastas desde 2020." },
   { id: "d5", cd: "D-5", date: "7/10", dow: "Vie", ph: "Despertar", type: "Reel", obj: "Construir confianza",
-    fmt: "Reel: «De 2020 a hoy» con los highlights por año como hilo",
-    hook: "La historia real de la cuenta conecta con lo que viene", cta: "Cuéntanos desde cuándo nos sigues",
-    stories: "Sticker de pregunta + repost de respuestas",
-    justif: "Viernes: la gente está más receptiva a lo emocional. Contamos los 6 años para que el reveal se sienta como evolución, no como «cambiaron y ya no los reconozco»." },
+    fmt: "Reel: «Empezamos con autos… mira hasta dónde llegamos» (2020 → hoy)",
+    hook: "Empezamos subastando autos. Ya no paramos ahí 👀", cta: "¿Qué te gustaría poder subastar?",
+    stories: "Sticker de pregunta «¿qué subastarías?» + repost de respuestas",
+    justif: "Viernes: la gente está más receptiva a lo emocional. Contamos los 6 años de autos como cimiento y plantamos la semilla de la expansión sin revelarla aún — el reveal se sentirá como evolución, no como «cambiaron y ya no los reconozco». La pregunta abre data real de qué categorías piden." },
   { id: "d4", cd: "D-4", date: "7/11", dow: "Sáb", ph: "Hype", type: "Reel", obj: "Enseñar la mecánica / mostrar el upgrade",
     fmt: "Reel screen-record: cómo pujar en la nueva app, paso a paso",
     hook: "Así de fácil será pujar en la nueva VMC 👀", cta: "Guarda este post para el 15/7",
@@ -48,14 +50,14 @@ const DEFAULT: Row[] = [
     justif: "Auditoría: falta prueba social. Los ganadores reales puentean la confianza de los 6 años hacia la plataforma nueva y abren la conversión suave a la waitlist, sin quemar el reveal." },
   { id: "d2", cd: "D-2", date: "7/13", dow: "Lun", ph: "Reveal", type: "Reel", obj: "Reveal total",
     fmt: "Reel + Carrusel oficial",
-    hook: "Sigue siendo VMC, subimos de nivel con el ADN de Subascars", cta: "El 15/7 abren las ofertas — regístrate hoy para entrar primero",
-    stories: "Countdown + sneak peek + link",
-    justif: "El reveal va HOY, no el día del lanzamiento, a propósito: le damos 48 h para circular y generar comentarios antes de pedir el registro. Reel porque necesitamos alcance frío; carrusel porque la base necesita el «sigues en casa»." },
+    hook: "Sigue siendo VMC. Y ahora subastas mucho más que autos 🔨", cta: "El 15/7 abren las ofertas — regístrate hoy para entrar primero",
+    stories: "Countdown + sneak peek de categorías nuevas + link",
+    justif: "EL REVEAL. Va HOY, no el día del lanzamiento, a propósito: 48 h para circular y generar comentarios antes de pedir registro. Dos mensajes fusionados: «sigue siendo VMC» (calma a los 112 K, no es cambio de marca) + «ya no solo autos» (la noticia real). Reel para alcance frío; carrusel para que la base sienta el «sigues en casa, solo que más grande»." },
   { id: "d1", cd: "D-1", date: "7/14", dow: "Mar", ph: "Reveal", type: "Reel", obj: "Urgencia",
-    fmt: "Reel + Stories: preview de 2-3 lotes exclusivos de apertura (precios teaser)",
-    hook: "Mañana, 15/7, abren estos lotes — prepárate para pujar", cta: "Activa tu recordatorio para mañana 15/7",
+    fmt: "Reel + Stories: preview de lotes de apertura — un auto + categorías nuevas (precios teaser)",
+    hook: "Mañana, 15/7, abren estos lotes — y no todos son autos 👀", cta: "Activa tu recordatorio para mañana 15/7",
     stories: "Countdown cada pocas horas + «Activa notificaciones» + AMA opcional",
-    justif: "Víspera. Todo el peso a recordatorios en Stories. No competimos con nosotros mismos con un feed fuerte hoy. El escenario es de mañana." },
+    justif: "Víspera. Todo el peso a recordatorios en Stories. El preview mezcla auto + categoría nueva para PROBAR que «lo que quieras» es real, no promesa. No competimos con nosotros mismos con un feed fuerte hoy. El escenario es de mañana." },
   { id: "dday", cd: "D-DAY", date: "7/15", dow: "Mié", ph: "Lanzamiento", type: "Reel", dday: true, obj: "Conversión",
     fmt: "Reel FIJADO + Carrusel + flood de Stories",
     hook: "El nuevo VMC ya está aquí 🚀", cta: "Regístrate y haz tu primera oferta HOY (link único)",
