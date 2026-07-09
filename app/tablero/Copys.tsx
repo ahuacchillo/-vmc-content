@@ -3,21 +3,21 @@ import { useRef, useState } from "react";
 import s from "./page.module.css";
 import { useStore } from "./useStore";
 
-const STORE = "vmc-slogans-v2";
+const STORE = "vmc-slogans-v3";
 
 type CopyItem = { id: string; text: string; tag: string };
 
-// Slogans para VMC. Eje de campaña: "Todo se remata" + #TodoSeRemata (variedad
-// inequívoca, no "Con Todo" que se lee como actitud). Solo slogans: la agencia
+// Slogans para VMC. Eje de campaña: "Ahora subastamos de todo" + #SubastasVMC (claim de
+// surtido en voz de marca). Ojo léxico: son SUBASTAS, no remates. Solo slogans: la agencia
 // prueba variantes y copia la que use. Voz insider peruana, subasta > rifa.
 const DEFAULT: CopyItem[] = [
-  { id: "c1", text: "Todo se remata.", tag: "Principal" },
-  { id: "c2", text: "#TodoSeRemata", tag: "Hashtag campaña" },
+  { id: "c1", text: "Ahora subastamos de todo.", tag: "Principal" },
+  { id: "c2", text: "#SubastasVMC", tag: "Hashtag campaña" },
   { id: "c3", text: "Ya no solo autos.", tag: "Reveal" },
   { id: "c4", text: "Empezamos con autos. No terminamos ahí.", tag: "Variedad" },
   { id: "c5", text: "Autos, tech, muebles e inmuebles. Todo en un solo lugar.", tag: "Categorías" },
-  { id: "c6", text: "Si tiene valor, aquí se remata.", tag: "Martillo" },
-  { id: "c7", text: "Si sabes rematar un auto, ya sabes rematar todo.", tag: "Mecánica" },
+  { id: "c6", text: "Si tiene valor, aquí se subasta.", tag: "Martillo" },
+  { id: "c7", text: "Si sabes subastar un auto, ya sabes subastar todo.", tag: "Mecánica" },
   { id: "c8", text: "Los autos no se van — ahora tienen vecinos.", tag: "Base autos" },
 ];
 

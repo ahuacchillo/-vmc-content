@@ -446,7 +446,6 @@
 .modalSubEd { outline: none; border-radius: 4px; padding: 1px 5px; border-bottom: 1px dashed transparent; }
 .modalSubEd:hover { border-bottom-color: var(--line); }
 .modalSubEd:focus { background: var(--bg-2); border-bottom-color: var(--vault); }
-.dot2 { color: var(--ink-faint); }
 .modalTitle:empty::before, .modalSubEd:empty::before { content: attr(data-ph); color: var(--ink-faint); font-weight: 400; }
 .modalTags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 14px 0 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); }
 

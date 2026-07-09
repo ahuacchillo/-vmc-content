@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import s from "./page.module.css";
 import { useStore } from "./useStore";
 
-const STORE = "vmc-matriz-v7";
+const STORE = "vmc-matriz-v8";
 const PHASES = ["Despertar", "Hype", "Reveal", "Lanzamiento"];
 const PH_CLASS: Record<string, string> = { Despertar: "phDespertar", Hype: "phHype", Reveal: "phReveal", Lanzamiento: "phLanzamiento" };
 
@@ -20,65 +20,65 @@ const nextCampaign = (c?: string): string | undefined => {
 };
 
 type Row = {
-  id: string; cd: string; date: string; dow: string; ph: string; type: string;
+  id: string; cd: string; dow: string; ph: string; type: string; // cd = fecha dd/mm/aaaa
   obj: string; fmt: string; hook: string; cta: string; stories: string; justif: string;
   dday?: boolean; campaign?: string; // objetivo de pauta; undefined = orgánico
   folder?: string; // enlace a la carpeta de diseño (renders / fotos del día)
 };
 
-// Base: análisis de growth @vmcsubastas (D-7 → D-Day, 7/8→7/15). Ángulo confirmado:
-// sigue siendo VMC (NO cambio de nombre), pero el REVEAL es la expansión de categoría.
-// EJE DE CAMPAÑA: "Todo se remata" + #TodoSeRemata (variedad inequívoca; NO "Con Todo",
-// que la audiencia ya lee como actitud/empuje, no como surtido). "Ya no solo autos" =
-// la pieza que nombra el cambio de frente (D-5). 4 verticales de apoyo: 🚗 Autos ·
-// 📱 Tech · 🛋️ Muebles · 🏠 Inmuebles. Autos = ancla/base diaria y prueba de credibilidad;
-// la expansión es la noticia que le da peso al 15/7. Reassurance a la base: "los autos
-// no se van, solo tienen vecinos".
+// Base: análisis de growth @vmcsubastas. Ángulo confirmado: sigue siendo VMC (NO cambio
+// de nombre); el hito es el ESTRENO del nuevo skin/plataforma (15/07/2026), y de fondo la
+// expansión de categorías «ya no solo autos» que se INTEGRA POCO A POCO (no big-bang).
+// EJE DE CAMPAÑA: "Ahora subastamos de todo" + #SubastasVMC (claim de surtido en voz de
+// marca). Ojo léxico: son SUBASTAS, no remates — se dice subastar/subasta/pujar, nunca rematar.
+// 4 verticales: 🚗 Autos (ancla/base diaria, prueba de credibilidad) · 📱 Tech · 🛋️ Muebles ·
+// 🏠 Inmuebles. Autos NO se va: es la casa; las categorías nuevas entran de a pocos, tech primero.
+// Reassurance a la base: "los autos no se van — ahora tienen vecinos".
 // La base diaria de autos a subasta NO está aquí: sigue todos los días. Esto es la capa "héroe".
-// Arranca el viernes 10 (D-5): los días previos (7/8-7/9) ya pasaron. Corre hasta D+2 (Vie 17):
-// la prórroga post-lanzamiento donde la conversión del pool ya maduro se sigue exprimiendo.
-// Pauta reducida a 3 (reglas): D-5 Alcance (siembra pool) · D-2 Alcance (reveal) · D-Day Conversión.
+// Arranca Vie 10/07 y corre hasta Vie 17/07 (prórroga post-estreno donde la conversión del
+// pool ya maduro se sigue exprimiendo).
+// Pauta reducida a 3 (reglas): 10/07 Alcance (siembra pool) · 13/07 Alcance (estreno) · 15/07 Conversión.
 const DEFAULT: Row[] = [
-  { id: "d5", cd: "D-5", date: "7/10", dow: "Vie", ph: "Despertar", type: "Reel", campaign: "Alcance", obj: "Abrir conversación + nombrar el cambio",
-    fmt: "Reel: «Empezamos con autos… mira hasta dónde llegamos» (2020 → hoy)",
-    hook: "Ya no solo autos. Empezamos ahí — no terminamos ahí.", cta: "¿Qué te gustaría rematar? Tíralo abajo — respondemos TODO #TodoSeRemata",
+  { id: "d5", cd: "10/07/2026", dow: "Vie", ph: "Despertar", type: "Reel", campaign: "Alcance", obj: "Abrir conversación + anticipar el nuevo skin",
+    fmt: "Reel: «Empezamos con autos… mira hasta dónde llegamos» (2020 → hoy) — teaser del skin nuevo",
+    hook: "Ya no solo autos. Y muy pronto, con cara nueva.", cta: "¿Qué te gustaría subastar? Tíralo abajo — respondemos TODO #SubastasVMC",
     stories: "Poll «¿qué subastarías?» + sticker de pregunta + repost de respuestas (reactivar comentarios)",
-    justif: "PRIMERA pieza del sprint corto (arrancamos Vie 10, sin días de teaser previos): carga doble. (1) Nombra el cambio de frente («Ya no solo autos»), que sobre 6 años de autos se siente evolución, no ruptura. (2) Asume la REACTIVACIÓN que hacía el viejo D-7: la cuenta está fría y sin señal el algoritmo no empuja el reveal — por eso la pregunta + responder cada comentario desde hoy es no negociable. Estrena #TodoSeRemata (UGC «¿y esto se remata?») y su pauta de Alcance arranca el pool de retargeting desde el día 1." },
-  { id: "d4", cd: "D-4", date: "7/11", dow: "Sáb", ph: "Hype", type: "Reel", obj: "Enseñar la mecánica / mostrar el upgrade",
+    justif: "PRIMERA pieza del sprint corto (arrancamos Vie 10/07, sin teaser previo): carga doble. (1) Anticipa el estreno del skin nuevo y nombra el rumbo («ya no solo autos»), que sobre 6 años de autos se siente evolución, no ruptura. (2) REACTIVA la cuenta: está fría y sin señal el algoritmo no empuja el estreno — la pregunta + responder cada comentario desde hoy es no negociable. Estrena #SubastasVMC (UGC «¿y esto se subasta?») y su pauta de Alcance arranca el pool de retargeting desde el día 1." },
+  { id: "d4", cd: "11/07/2026", dow: "Sáb", ph: "Hype", type: "Reel", obj: "Enseñar la mecánica / mostrar el upgrade",
     fmt: "Reel screen-record: la misma puja sobre un auto y sobre un lote nuevo (tech), lado a lado",
-    hook: "Cómo pujar en 30 segundos: si sabes rematar un auto, ya sabes rematar todo.", cta: "Guárdalo — te va a servir el 15/7",
+    hook: "Cómo pujar en 30 segundos: si sabes subastar un auto, ya sabes subastar todo.", cta: "Guárdalo — te va a servir el 15/07",
     stories: "«Antes vs. Ahora» de la interfaz + countdown",
-    justif: "Auditoría: la mecánica hoy es invisible en el perfil. Activo educativo #1 — muestra el upgrade en vez de prometerlo, y se guarda al highlight «CÓMO PUJAR». En el plan corto ABSORBE el trabajo del carrusel de valor que perdimos (D-6): el ángulo «cómo pujar en 30s» es guardable, y el guardado es la señal más barata para alcance frío nuevo. Clave del reveal: el flujo es idéntico para un auto o un lote nuevo, nadie reaprende nada. Para 112K que ya confían, mostrar convierte más que intrigar." },
-  { id: "d3", cd: "D-3", date: "7/12", dow: "Dom", ph: "Hype", type: "Carrusel", obj: "Prueba social + FOMO",
+    justif: "Auditoría: la mecánica hoy es invisible en el perfil. Activo educativo #1 — muestra el upgrade del skin en vez de prometerlo, y se guarda al highlight «CÓMO PUJAR». Absorbe el trabajo del carrusel de valor: el ángulo «cómo pujar en 30s» es guardable, y el guardado es la señal más barata para alcance frío nuevo. Clave: la mecánica de subasta es idéntica para un auto o un lote nuevo, nadie reaprende nada. Para 112K que ya confían, mostrar convierte más que intrigar." },
+  { id: "d3", cd: "12/07/2026", dow: "Dom", ph: "Hype", type: "Carrusel", obj: "Prueba social + FOMO",
     fmt: "Carrusel: ganadores reales de estos años + «ahora será aún más fácil»",
-    hook: "Miles ya se llevaron su auto acá. Sin comisiones, sin intermediarios. Y esto recién se pone bueno.", cta: "Regístrate en la lista HOY — los lotes de apertura son limitados (un solo link) #TodoSeRemata",
+    hook: "Miles ya se llevaron su auto acá. Sin comisiones, sin intermediarios. Y esto recién empieza.", cta: "Regístrate en la lista HOY — los lotes de apertura son limitados (un solo link) #SubastasVMC",
     stories: "Repost de clips de ganadores + countdown «faltan 2 días» + link a la lista",
-    justif: "Auditoría: falta prueba social. Los ganadores reales puentean la confianza de los 6 años hacia la plataforma nueva. En el plan corto el pool de retargeting tuvo menos tiempo para crecer, así que aquí ENDURECEMOS el pedido de registro (antes era conversión «suave»): CTA directo a la lista con escasez real (lotes de apertura limitados), sin quemar el reveal del D-2." },
-  { id: "d2", cd: "D-2", date: "7/13", dow: "Lun", ph: "Reveal", type: "Reel", campaign: "Alcance", obj: "Reveal total",
-    fmt: "Reel + Carrusel oficial · abre con un auto, luego tech · muebles · inmuebles",
-    hook: "Seguimos siendo VMC. Y ahora TODO SE REMATA: autos, tech, muebles, inmuebles.", cta: "El 15/7 abre todo. Regístrate hoy y entra primero. #TodoSeRemata",
-    stories: "Countdown + sneak peek de las 4 categorías + link · cierre «#TodoSeRemata»",
-    justif: "EL REVEAL. Va HOY, no el día del lanzamiento, a propósito: 48 h para circular y generar comentarios antes de pedir registro. Dos mensajes fusionados: «sigue siendo VMC» (calma a los 112 K, no es cambio de marca) + «TODO SE REMATA» (la noticia real, variedad inequívoca, ya con las 4 categorías). Reassurance directa a la base: «los autos no se van — ahora tienen vecinos». Abrir con un auto para que lo primero que vean siga siendo casa. Reel para alcance frío; carrusel para la base." },
-  { id: "d1", cd: "D-1", date: "7/14", dow: "Mar", ph: "Reveal", type: "Reel", obj: "Urgencia",
-    fmt: "Reel + Stories: preview de lotes de apertura — un auto + un lote de cada categoría nueva (precios teaser)",
-    hook: "Mañana abren los lotes. Y ojo: no todos tienen 4 ruedas.", cta: "Activa el recordatorio para mañana 9 a.m.",
+    justif: "Auditoría: falta prueba social. Los ganadores reales puentean la confianza de los 6 años hacia la plataforma nueva. Con el pool de retargeting aún joven ENDURECEMOS el pedido de registro (antes conversión «suave»): CTA directo a la lista con escasez real (lotes de apertura limitados), sin quemar el estreno del 13/07." },
+  { id: "d2", cd: "13/07/2026", dow: "Lun", ph: "Reveal", type: "Reel", campaign: "Alcance", obj: "Estreno de plataforma + rumbo de categorías",
+    fmt: "Reel + Carrusel oficial · abre con un auto, luego adelanta tech · muebles · inmuebles (entran de a pocos)",
+    hook: "Seguimos siendo VMC. Estrenamos plataforma — y ahora subastamos de todo: autos, tech, y lo que viene.", cta: "El 15/07 estrenamos. Regístrate hoy y entra primero. #SubastasVMC",
+    stories: "Countdown + sneak peek del skin nuevo + adelanto de categorías + link · cierre «#SubastasVMC»",
+    justif: "EL ESTRENO se anuncia HOY, no el día del lanzamiento: 48 h para circular y generar comentarios antes de pedir registro. Dos mensajes fusionados: «sigue siendo VMC» (calma a los 112 K, no es cambio de marca) + «ahora subastamos de todo» (el rumbo real). Clave del reencuadre: las categorías nuevas NO abren todas de golpe — entran poco a poco (tech primero); hoy se siembra la expectativa, no se promete un catálogo completo. Reassurance a la base: «los autos no se van — ahora tienen vecinos». Abrir con un auto para que lo primero que vean siga siendo casa. Reel para alcance frío; carrusel para la base." },
+  { id: "d1", cd: "14/07/2026", dow: "Mar", ph: "Reveal", type: "Reel", obj: "Urgencia",
+    fmt: "Reel + Stories: preview del skin nuevo + primeros lotes de apertura (un auto + un adelanto de tech)",
+    hook: "Mañana estrenamos plataforma. Y ojo: no todo tiene 4 ruedas.", cta: "Activa el recordatorio para mañana 9 a.m.",
     stories: "Countdown cada pocas horas + «Activa notificaciones» + AMA opcional",
-    justif: "Víspera. Todo el peso a recordatorios en Stories. El preview mezcla auto + tech + mueble + inmueble para PROBAR que «todo se remata» es real, no promesa. No competimos con nosotros mismos con un feed fuerte hoy. El escenario es de mañana." },
-  { id: "dday", cd: "D-DAY", date: "7/15", dow: "Mié", ph: "Lanzamiento", type: "Reel", dday: true, campaign: "Conversión", obj: "Conversión",
-    fmt: "Reel FIJADO + Carrusel catálogo (slide 1 = auto fuerte, luego un lote por categoría) + flood de Stories",
-    hook: "Ya está abierto. Todo se remata: autos, tech, muebles, inmuebles. Haz tu primera oferta.", cta: "Regístrate y oferta hoy (un solo link) #TodoSeRemata",
-    stories: "Flood de Stories por categoría + link stickers + guardar a highlight «NUEVO 🔨» + Live opcional",
-    justif: "Día D. Reel fijado + un solo CTA medible. El carrusel-catálogo abre con un auto (tranquiliza a la base) y recién ahí rota por tech/muebles/inmuebles. Lo decisivo: responder cada comentario en la 1ª hora. Eso es lo que hace que el algoritmo empuje el lanzamiento a más gente." },
-  { id: "dplus1", cd: "D+1", date: "7/16", dow: "Jue", ph: "Lanzamiento", type: "Carrusel", obj: "Prueba social + sostener conversión",
-    fmt: "Carrusel: primeras pujas y adjudicados del día 1 (autos + un lote nuevo)",
-    hook: "Abrimos ayer y ya hay primeros ganadores. Los lotes siguen abiertos.", cta: "Todavía puedes entrar y pujar (un solo link) #TodoSeRemata",
+    justif: "Víspera. Todo el peso a recordatorios en Stories. El preview mezcla el skin nuevo + un auto + un adelanto de tech para PROBAR que «subastamos de todo» empieza en serio, sin prometer las 4 categorías abiertas a la vez. No competimos con nosotros mismos con un feed fuerte hoy. El escenario es de mañana." },
+  { id: "dday", cd: "15/07/2026", dow: "Mié", ph: "Lanzamiento", type: "Reel", dday: true, campaign: "Conversión", obj: "Conversión / estreno de plataforma",
+    fmt: "Reel FIJADO + Carrusel catálogo (slide 1 = auto fuerte, luego el primer lote de categoría nueva) + flood de Stories",
+    hook: "Ya está aquí la nueva plataforma. Subastamos de todo — arrancamos con autos y tech. Haz tu primera oferta.", cta: "Regístrate y subasta hoy (un solo link) #SubastasVMC",
+    stories: "Flood de Stories por categoría disponible + link stickers + guardar a highlight «NUEVO 🔨» + Live opcional",
+    justif: "Día del estreno. Reel fijado + un solo CTA medible. El carrusel-catálogo abre con un auto (tranquiliza a la base) y recién ahí muestra la PRIMERA categoría nueva en vivo (tech) — el resto se comunica como «va entrando», fiel al rollout gradual. Lo decisivo: responder cada comentario en la 1ª hora. Eso es lo que hace que el algoritmo empuje el estreno a más gente." },
+  { id: "dplus1", cd: "16/07/2026", dow: "Jue", ph: "Lanzamiento", type: "Carrusel", obj: "Prueba social + sostener conversión",
+    fmt: "Carrusel: primeras pujas y adjudicados del día 1 (autos + el primer lote nuevo)",
+    hook: "Estrenamos ayer y ya hay primeros ganadores. Los lotes siguen abiertos.", cta: "Todavía puedes entrar y pujar (un solo link) #SubastasVMC",
     stories: "Repost de primeras pujas reales + countdown de lotes que cierran + link",
-    justif: "Prórroga día 1. La conversión NO muere el 15: con base fría y sprint corto, buena parte del pool de retargeting recién madura ahora. No sumamos pauta nueva (seguimos en 3) — la campaña de Conversión del D-Day sigue corriendo y retargetea a este público. El orgánico aporta prueba social fresca (primeras pujas reales) que baja el miedo del que ayer dudó." },
-  { id: "dplus2", cd: "D+2", date: "7/17", dow: "Vie", ph: "Lanzamiento", type: "Reel", obj: "Urgencia de cierre",
+    justif: "Prórroga día 1. La conversión NO muere el 15: con base fría y sprint corto, buena parte del pool de retargeting recién madura ahora. No sumamos pauta nueva (seguimos en 3) — la campaña de Conversión del estreno sigue corriendo y retargetea a este público. El orgánico aporta prueba social fresca (primeras pujas reales) que baja el miedo del que ayer dudó." },
+  { id: "dplus2", cd: "17/07/2026", dow: "Vie", ph: "Lanzamiento", type: "Reel", obj: "Urgencia de cierre",
     fmt: "Reel corto: recap de la semana + «cierran los lotes de apertura»",
-    hook: "Última llamada: los lotes de apertura cierran hoy.", cta: "Entra antes de que cierre (un solo link) #TodoSeRemata",
+    hook: "Última llamada: los lotes de apertura cierran hoy.", cta: "Entra antes de que cierre (un solo link) #SubastasVMC",
     stories: "Countdown de cierre por hora + «último aviso» + link",
-    justif: "Prórroga día 2 y cierre del evento de apertura. Urgencia real para exprimir la cola de conversión del pool ya maduro: el que entró por el reveal y no pujó ahora tiene fecha límite. Sigue orgánico sobre la campaña de Conversión que aún corre — no es una 4ª pauta." },
+    justif: "Prórroga día 2 y cierre del evento de apertura. Urgencia real para exprimir la cola de conversión del pool ya maduro: el que entró por el estreno y no pujó ahora tiene fecha límite. Sigue orgánico sobre la campaña de Conversión que aún corre — no es una 4ª pauta." },
 ];
 
 type EditableKey = "obj" | "fmt" | "hook" | "cta" | "stories" | "justif";
@@ -143,7 +143,7 @@ export default function MatrixEditor() {
     setOpenId(null);
     setDraftValue({
       id: "x" + Date.now(),
-      cd: "Día +", date: "7/?", dow: "—", ph: "Despertar", type: "Foto", obj: "",
+      cd: "", dow: "", ph: "Despertar", type: "Foto", obj: "",
       fmt: "", hook: "", cta: "", stories: "", justif: "",
     });
   };
@@ -195,7 +195,7 @@ export default function MatrixEditor() {
             {r.folder && <span className={s.cellFolder} title="Carpeta de diseño adjunta">📁</span>}
             <span className={s.cellCd}>{r.cd}</span>
             <span className={s.cellHook}>{r.hook || <em className={s.cellEmpty}>Toca para editar</em>}</span>
-            <span className={s.cellFoot}>{r.dow} {r.date} · {r.type}</span>
+            <span className={s.cellFoot}>{r.dow} · {r.type}</span>
           </button>
         ))}
       </div>
@@ -226,11 +226,9 @@ export default function MatrixEditor() {
             <div className={s.modal} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
               <div className={s.modalHead}>
                 <div className={s.modalTitleWrap}>
-                  <Editable className={s.modalTitle} value={r.cd} onSave={(v) => setField("cd", v)} placeholder="Día" />
+                  <Editable className={s.modalTitle} value={r.cd} onSave={(v) => setField("cd", v)} placeholder="dd/mm/aaaa" />
                   <span className={s.modalSub}>
                     <Editable className={s.modalSubEd} value={r.dow} onSave={(v) => setField("dow", v)} placeholder="Día sem." />
-                    <span className={s.dot2}>·</span>
-                    <Editable className={s.modalSubEd} value={r.date} onSave={(v) => setField("date", v)} placeholder="Fecha" />
                   </span>
                 </div>
                 <button className={s.drawerClose} onClick={close} aria-label="Cerrar">✕</button>
