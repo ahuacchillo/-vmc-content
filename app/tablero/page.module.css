@@ -395,6 +395,21 @@
 /* pauta: anillo dorado + chip de esquina (canal visual aparte de la fase) */
 .cellBoosted { box-shadow: 0 0 0 2px color-mix(in srgb, var(--orange-lt) 60%, transparent) inset; }
 .cellOpen.cellBoosted { box-shadow: 0 0 0 2px var(--vault-lt) inset; } /* abierto manda */
+.cellFolder {
+  position: absolute; top: 8px; right: 38px; font-size: 12px; line-height: 1;
+  width: 24px; height: 24px; display: grid; place-items: center; border-radius: 7px;
+  background: rgba(0,0,0,.35); backdrop-filter: blur(2px);
+}
+/* bloque de carpeta de diseño en el modal */
+.folderBlock { display: flex; flex-direction: column; gap: 4px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.folderHead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.folderLink {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .04em; text-decoration: none;
+  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  color: var(--vault-lt); background: rgba(132,96,229,.14);
+  border: 1px solid color-mix(in srgb, var(--vault-lt) 45%, transparent);
+}
+.folderLink:hover { background: rgba(132,96,229,.24); }
 .cellCampaign {
   align-self: flex-start; display: inline-flex; align-items: center; gap: 3px;
   font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: .06em;

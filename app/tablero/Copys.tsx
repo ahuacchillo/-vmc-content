@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import s from "./page.module.css";
 import { useStore } from "./useStore";
 
@@ -24,11 +24,21 @@ const DEFAULT: CopyItem[] = [
 export default function Copys() {
   const [items, persist] = useStore<CopyItem[]>(STORE, DEFAULT);
   const [okId, setOkId] = useState<string | null>(null);
+  const [draft, setDraft] = useState<CopyItem | null>(null); // slogan nuevo sin guardar
+  const draftRef = useRef<CopyItem | null>(null);            // lectura sincrónica (blur→Guardar)
+  const setDraftValue = (next: CopyItem | null) => { draftRef.current = next; setDraft(next); };
 
   const edit = (id: string, field: keyof CopyItem, value: string) =>
     persist(items.map((i) => (i.id === id ? { ...i, [field]: value } : i)));
   const del = (id: string) => persist(items.filter((i) => i.id !== id));
-  const add = () => persist([...items, { id: "c" + Date.now(), text: "Nuevo slogan…", tag: "Opción" }]);
+
+  // Abre un borrador: NO se persiste hasta que el usuario le da Guardar.
+  const add = () => setDraftValue({ id: "c" + Date.now(), text: "", tag: "Opción" });
+  const saveDraft = () => {
+    const d = draftRef.current;
+    if (d && d.text.trim()) persist([...items, d]);
+    setDraftValue(null);
+  };
 
   const copy = async (id: string, text: string) => {
     try { await navigator.clipboard.writeText(text); setOkId(id); setTimeout(() => setOkId(null), 1400); } catch {}
@@ -54,14 +64,41 @@ export default function Copys() {
           </div>
         ))}
       </div>
+
+      {draft && (
+        <div className={s.modalOverlay} onClick={() => setDraftValue(null)}>
+          <div className={s.modal} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+            <div className={s.modalHead}>
+              <div className={s.modalTitleWrap}>
+                <span className={s.modalTitle}>Nuevo slogan</span>
+              </div>
+              <button className={s.drawerClose} onClick={() => setDraftValue(null)} aria-label="Cerrar">✕</button>
+            </div>
+            <div className={s.efields}>
+              <div className={s.efield}>
+                <span className={s.k}>Etiqueta</span>
+                <Editable className={s.edit} value={draft.tag} onSave={(v) => setDraftValue({ ...draftRef.current!, tag: v })} placeholder="Etiqueta" />
+              </div>
+              <div className={`${s.efield} ${s.wide}`}>
+                <span className={s.k}>Slogan</span>
+                <Editable className={s.edit} value={draft.text} onSave={(v) => setDraftValue({ ...draftRef.current!, text: v })} placeholder="Escribe el slogan…" />
+              </div>
+            </div>
+            <div className={s.modalFoot}>
+              <button className={s.btn} onClick={() => setDraftValue(null)}>Cancelar</button>
+              <button className={`${s.btn} ${s.primary}`} onClick={saveDraft}>Guardar slogan</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-function Editable({ value, onSave, className }:
-  { value: string; onSave: (v: string) => void; className?: string }) {
+function Editable({ value, onSave, className, placeholder }:
+  { value: string; onSave: (v: string) => void; className?: string; placeholder?: string }) {
   return (
-    <div className={className} contentEditable suppressContentEditableWarning spellCheck={false} title="Editable"
+    <div className={className} data-ph={placeholder || ""} contentEditable suppressContentEditableWarning spellCheck={false} title="Editable"
       onBlur={(e) => { const v = e.currentTarget.textContent.trim(); if (v !== value) onSave(v); }}>
       {value}
     </div>

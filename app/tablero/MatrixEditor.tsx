@@ -23,6 +23,7 @@ type Row = {
   id: string; cd: string; date: string; dow: string; ph: string; type: string;
   obj: string; fmt: string; hook: string; cta: string; stories: string; justif: string;
   dday?: boolean; campaign?: string; // objetivo de pauta; undefined = orgánico
+  folder?: string; // enlace a la carpeta de diseño (renders / fotos del día)
 };
 
 // Base: análisis de growth @vmcsubastas (D-7 → D-Day, 7/8→7/15). Ángulo confirmado:
@@ -191,6 +192,7 @@ export default function MatrixEditor() {
           >
             <span className={s.cellType} title={r.type}>{TYPE_ICON[r.type] || "▣"}</span>
             {r.campaign && <span className={s.cellCampaign} title={`Con pauta · ${r.campaign}`}>📣 {r.campaign}</span>}
+            {r.folder && <span className={s.cellFolder} title="Carpeta de diseño adjunta">📁</span>}
             <span className={s.cellCd}>{r.cd}</span>
             <span className={s.cellHook}>{r.hook || <em className={s.cellEmpty}>Toca para editar</em>}</span>
             <span className={s.cellFoot}>{r.dow} {r.date} · {r.type}</span>
@@ -250,6 +252,16 @@ export default function MatrixEditor() {
                     <Editable className={`${s.edit} ${k === "hook" ? s.hook : ""}`} value={r[k]} onSave={(v) => setField(k, v)} placeholder={label} />
                   </div>
                 ))}
+              </div>
+
+              <div className={s.folderBlock}>
+                <div className={s.folderHead}>
+                  <span className={s.k}>📁 Carpeta de diseño · renders / fotos del día</span>
+                  {r.folder && (
+                    <a className={s.folderLink} href={r.folder} target="_blank" rel="noopener noreferrer">Abrir ↗</a>
+                  )}
+                </div>
+                <Editable className={s.edit} value={r.folder || ""} onSave={(v) => setField("folder", v)} placeholder="Pega el enlace a Drive / carpeta de diseño…" />
               </div>
 
               {isDraft && (
