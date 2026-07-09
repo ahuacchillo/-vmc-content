@@ -1,6 +1,5 @@
 import Link from "next/link";
 import s from "../page.module.css";
-import CopyBlock from "../CopyBlock";
 
 const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(" ");
 
@@ -17,7 +16,7 @@ const FRENA = [
 ];
 
 const PILARES = [
-  ["🔨", "Subastas en vivo", "Autos y ofertas reales, el producto en acción todos los días."],
+  ["🔨", "Subastas en vivo", "Autos como base diaria y ahora todo tipo de lotes: el producto en acción cada día."],
   ["🎓", "Educación y confianza", "Cómo funciona, tips para ofertar, transparencia."],
   ["🏆", "Prueba social", "Ganadores, testimonios, autos entregados."],
   ["🎥", "Marca y comunidad", "Detrás de cámara, equipo, cultura VMC."],
@@ -83,21 +82,7 @@ export default function Audit() {
           </div>
         </div>
 
-        <h2 className={s.sec}><span className={s.n}>02</span> Optimización de perfil <span className={s.hint}>listo para copiar y pegar</span></h2>
-        <div className={s.optStack}>
-          <CopyBlock label="Nombre (campo buscable)" text="VMC Subastas · Subasta de autos Perú 🚗" />
-          <CopyBlock
-            label="Bio"
-            text={"🚗 Compra y vende autos en subasta, directo de financieras y aseguradoras.\n🔥 Algo nuevo llega el 15 de julio.\n👇 Únete a la lista de espera"}
-          />
-          <CopyBlock
-            label="CTA · un solo enlace"
-            text={"Enlace en bio (uno solo): [tu-link-de-lista-de-espera]\nTexto del botón / sticker: «Únete a la lista de espera»\nEn Stories: link sticker → misma URL"}
-          />
-        </div>
-        <p className={s.note}>Nombre = campo buscable: mételo con las palabras que la gente busca («subasta de autos Perú»). Regla de oro: <b>un solo destino</b>, no cinco.</p>
-
-        <h2 className={s.sec}><span className={s.n}>03</span> Cómo pensamos la cadencia</h2>
+        <h2 className={s.sec}><span className={s.n}>02</span> Cómo pensamos la cadencia</h2>
         <div className={s.qa}>
           {CADENCIA.map((item) => (
             <div key={item.q} className={s.qitem}>
@@ -109,7 +94,7 @@ export default function Audit() {
           ))}
         </div>
 
-        <h2 className={s.sec}><span className={s.n}>04</span> Después del lanzamiento <span className={s.hint}>gestión continua, alineada con la agencia</span></h2>
+        <h2 className={s.sec}><span className={s.n}>03</span> Después del lanzamiento <span className={s.hint}>gestión continua, alineada con la agencia</span></h2>
         <div className={s.pillars}>
           {PILARES.map(([ic, t, d]) => (
             <div key={t} className={s.pillar}>

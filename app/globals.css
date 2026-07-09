@@ -1,12 +1,13 @@
 :root {
-  --bg: #0e1615;
-  --card: #161f1e;
-  --ink: #eaf0ee;
-  --soft: #a7b4b2;
-  --line: #26312f;
-  --brass: #d9a441;
-  --sold: #54c295;
-  --live: #e5715c;
+  /* Concorde design tokens (fuente: /r/button.json) — mismo sistema que /tablero */
+  --bg: #0D0A18;
+  --card: #1A1330;
+  --ink: #F4F1FB;
+  --soft: #B3A9CC;
+  --line: #2E2547;
+  --brass: #ed8936; /* orange-600, color primario Concorde */
+  --sold: #00cccc;  /* teal-400 */
+  --live: #ff7a7a;  /* crit */
 }
 * { box-sizing: border-box; }
 body {

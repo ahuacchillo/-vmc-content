@@ -258,7 +258,7 @@
 
 /* ── filtro de fases + tags por card ── */
 .phbar { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
-.phbar .phlbl { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-right: 4px; }
+.phlbl { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-right: 4px; }
 .phbtn {
   cursor: pointer; font: inherit; font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase;
   padding: 6px 14px; border-radius: 9999px; background: var(--panel); color: var(--ink-soft); border: 1px solid var(--line);
