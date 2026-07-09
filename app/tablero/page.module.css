@@ -137,6 +137,19 @@
 .panel.bad .plist li span:first-child { color: var(--crit); }
 .note { font-size: 11.5px; color: var(--ink-faint); font-family: var(--mono); margin: 10px 0 0; }
 
+/* nota de reglas de pauta (sobre el perfil) */
+.rulesNote {
+  margin: 4px 0 20px; padding: 14px 16px; border-radius: 12px;
+  background: rgba(251,196,125,.07); border: 1px solid color-mix(in srgb, var(--orange-lt) 26%, transparent);
+}
+.rulesHead { margin: 0 0 8px; font-size: 13px; font-weight: 800; color: var(--orange-lt); }
+.rulesHead span { margin-left: 8px; font-weight: 500; font-size: 11px; color: var(--ink-faint); font-family: var(--mono); }
+.rulesList { margin: 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+.rulesList li { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+.rulesList li b { color: var(--orange-lt); font-family: var(--mono); margin-right: 6px; }
+.rulesFoot { margin: 9px 0 0; font-size: 11.5px; color: var(--ink-faint); line-height: 1.45; }
+.rulesFoot b { color: var(--ink-soft); }
+
 /* ── hook / lógica ── */
 .hook {
   position: relative; border-radius: var(--radius); padding: 26px 28px; box-shadow: var(--shadow);
@@ -379,6 +392,16 @@
 .cell.phLanzamiento { border-top: 3px solid transparent; background: linear-gradient(160deg, rgba(237,137,54,.25), rgba(132,96,229,.25)); }
 .cellDday { border-color: var(--orange-lt); box-shadow: 0 0 0 1px var(--orange-lt) inset; }
 .cellOpen { border-color: var(--vault-lt); box-shadow: 0 0 0 2px var(--vault-lt) inset; }
+/* pauta: anillo dorado + chip de esquina (canal visual aparte de la fase) */
+.cellBoosted { box-shadow: 0 0 0 2px color-mix(in srgb, var(--orange-lt) 60%, transparent) inset; }
+.cellOpen.cellBoosted { box-shadow: 0 0 0 2px var(--vault-lt) inset; } /* abierto manda */
+.cellCampaign {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 3px;
+  font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: 2px 6px; border-radius: 999px;
+  background: rgba(251,196,125,.16); color: var(--orange-lt);
+  border: 1px solid color-mix(in srgb, var(--orange-lt) 45%, transparent);
+}
 
 /* ── modal de edición de celda ── */
 .modalOverlay {
@@ -446,6 +469,17 @@
 }
 .typeTagSm { margin-top: 6px; font-size: 9px; }
 .typeTag:hover, .typeTagSm:hover { color: #fff; background: var(--orange); }
+/* toggle de pauta: apagado = fantasma, encendido = dorado */
+.campTag {
+  cursor: pointer; font: inherit; font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: .06em;
+  padding: 3px 9px; border-radius: 9999px; color: var(--ink-faint);
+  background: transparent; border: 1px dashed var(--line);
+}
+.campTag:hover { color: var(--ink-soft); border-color: var(--ink-faint); }
+.campOn {
+  color: var(--orange-lt); background: rgba(251,196,125,.16);
+  border: 1px solid color-mix(in srgb, var(--orange-lt) 50%, transparent);
+}
 
 /* ── gestor de copys ── */
 .copys { margin-top: 4px; }

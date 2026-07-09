@@ -2,7 +2,7 @@
 import s from "./page.module.css";
 import { useStore } from "./useStore";
 
-const STORE = "vmc-perfil-v1";
+const STORE = "vmc-perfil-v2";
 
 type ProfileData = {
   handle: string; name: string; posts: string; followers: string; following: string;
@@ -11,11 +11,11 @@ type ProfileData = {
 
 const DEFAULT: ProfileData = {
   handle: "vmcsubastas",
-  name: "VMC Subastas · Autos y remates Perú 🔨",
+  name: "VMC Subastas · Autos, Tech, Muebles 🔨",
   posts: "5,597",
   followers: "112 K",
   following: "48",
-  bio: "🔨 Remates online en Perú. Empezamos con autos, ahora va todo.\n💸 Tú pones el precio. Sin comisiones, sin intermediarios.\n⏱️ Lotes reales con hora de cierre.\n🔴 Nueva plataforma · 15 de julio\n👇 Entra a la lista de espera",
+  bio: "🔨 Remates online en Perú. Empezamos con autos, ahora subastamos de TODO.\n🚗 Autos · 📱 Tech · 🛋️ Muebles · 🏠 Inmuebles\n💸 Tú pones el precio. Sin comisiones, sin intermediarios.\n⏱️ Lotes reales con hora de cierre.\n🔴 15 de julio · nueva plataforma\n👇 Entra a la lista de espera",
   linkText: "lista-de-espera.vmc.pe",
   cta: "Únete a la lista de espera",
 };

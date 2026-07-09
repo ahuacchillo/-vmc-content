@@ -1,9 +1,11 @@
 -- Tablero VMC — persistencia compartida en Supabase.
 -- Una tabla, una fila por documento jsonb. Keys que usa la app hoy:
---   'vmc-matriz-v4'  (grilla del feed)
---   'vmc-copys-v1'   (copys y slogans)
---   'vmc-perfil-v1'  (perfil de Instagram)
--- El cliente hace: select data where key = ?  /  upsert {key, data, updated_at} on conflict (key).
+--   'vmc-matriz-v7'   (grilla del feed; cada día incluye su campo `campaign` de pauta)
+--   'vmc-slogans-v2'  (slogans)
+--   'vmc-perfil-v2'   (perfil de Instagram)
+-- Como `data` es jsonb, cualquier campo nuevo del documento (p.ej. `campaign`) persiste
+-- sin cambiar el esquema. El cliente hace: select data where key = ?  /  upsert
+-- {key, data, updated_at} on conflict (key).
 -- Correr en Supabase → SQL Editor. Es idempotente: se puede re-ejecutar sin romper nada.
 
 create table if not exists public.docs (

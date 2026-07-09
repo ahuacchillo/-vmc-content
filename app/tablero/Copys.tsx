@@ -3,16 +3,22 @@ import { useState } from "react";
 import s from "./page.module.css";
 import { useStore } from "./useStore";
 
-const STORE = "vmc-copys-v1";
+const STORE = "vmc-slogans-v2";
 
 type CopyItem = { id: string; text: string; tag: string };
 
-// Opciones de slogan/copy para VMC. Editable: la agencia prueba variantes y copia la que use.
+// Slogans para VMC. Eje de campaña: "Todo se remata" + #TodoSeRemata (variedad
+// inequívoca, no "Con Todo" que se lee como actitud). Solo slogans: la agencia
+// prueba variantes y copia la que use. Voz insider peruana, subasta > rifa.
 const DEFAULT: CopyItem[] = [
-  { id: "c1", text: "Vende lo que quieras, vende con VMC", tag: "Slogan" },
-  { id: "c2", text: "Vende con VMC", tag: "Slogan corto" },
-  { id: "c3", text: "Compra y vende autos en subasta, directo de financieras y aseguradoras.", tag: "Bio" },
-  { id: "c4", text: "Sigue siendo VMC — subimos de nivel.", tag: "Reveal" },
+  { id: "c1", text: "Todo se remata.", tag: "Principal" },
+  { id: "c2", text: "#TodoSeRemata", tag: "Hashtag campaña" },
+  { id: "c3", text: "Ya no solo autos.", tag: "Reveal" },
+  { id: "c4", text: "Empezamos con autos. No terminamos ahí.", tag: "Variedad" },
+  { id: "c5", text: "Autos, tech, muebles e inmuebles. Todo en un solo lugar.", tag: "Categorías" },
+  { id: "c6", text: "Si tiene valor, aquí se remata.", tag: "Martillo" },
+  { id: "c7", text: "Si sabes rematar un auto, ya sabes rematar todo.", tag: "Mecánica" },
+  { id: "c8", text: "Los autos no se van — ahora tienen vecinos.", tag: "Base autos" },
 ];
 
 export default function Copys() {
@@ -22,8 +28,7 @@ export default function Copys() {
   const edit = (id: string, field: keyof CopyItem, value: string) =>
     persist(items.map((i) => (i.id === id ? { ...i, [field]: value } : i)));
   const del = (id: string) => persist(items.filter((i) => i.id !== id));
-  const add = () => persist([...items, { id: "c" + Date.now(), text: "Nuevo copy…", tag: "Opción" }]);
-  const reset = () => persist(DEFAULT);
+  const add = () => persist([...items, { id: "c" + Date.now(), text: "Nuevo slogan…", tag: "Opción" }]);
 
   const copy = async (id: string, text: string) => {
     try { await navigator.clipboard.writeText(text); setOkId(id); setTimeout(() => setOkId(null), 1400); } catch {}
@@ -32,8 +37,7 @@ export default function Copys() {
   return (
     <div className={s.copys}>
       <div className={s.toolbar}>
-        <button className={`${s.btn} ${s.primary}`} onClick={add}>+ Añadir copy</button>
-        <button className={s.btn} onClick={reset}>Restablecer</button>
+        <button className={`${s.btn} ${s.primary}`} onClick={add}>+ Añadir slogan</button>
         <span className={s.saved}>Edita el texto o la etiqueta · se guarda solo</span>
       </div>
       <div className={s.copyGrid}>
