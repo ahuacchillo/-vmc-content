@@ -11,11 +11,11 @@ type ProfileData = {
 
 const DEFAULT: ProfileData = {
   handle: "vmcsubastas",
-  name: "VMC Subastas · Autos y más en Perú 🔨",
+  name: "VMC Subastas · Autos y remates Perú 🔨",
   posts: "5,597",
   followers: "112 K",
   following: "48",
-  bio: "🔨 La subasta que conoces por autos — ahora para todo.\n🚗🏠📱💎 Lotes reales, tiempo limitado, tú pones la oferta.\n🔴 Nueva plataforma ▶️ 15 de julio.\n👇 Únete a la lista de espera",
+  bio: "🔨 Remates online en Perú. Empezamos con autos, ahora va todo.\n💸 Tú pones el precio. Sin comisiones, sin intermediarios.\n⏱️ Lotes reales con hora de cierre.\n🔴 Nueva plataforma · 15 de julio\n👇 Entra a la lista de espera",
   linkText: "lista-de-espera.vmc.pe",
   cta: "Únete a la lista de espera",
 };
